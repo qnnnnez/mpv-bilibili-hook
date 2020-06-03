@@ -99,7 +99,7 @@ mp.add_hook("on_load", 9, function () {
         if (videoFile.length != 1) {
             mp.msg.error("More than one video streams found, playing only the first one.");
         }
-        videoFile = VideoFile[0];
+        videoFile = videoFile[0];
     }
     mp.set_property_native("stream-open-filename", videoFile);
     
