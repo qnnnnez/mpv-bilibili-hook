@@ -1,5 +1,6 @@
 var YOUGET_BIN = "you-get";
 var COOKIE_FILE = "E:/tmp/cookies.txt";
+var NO_INITIAL_AUDIO_SYNC = true;
 
 if (!String.prototype.startsWith) {
     String.prototype.startsWith = function (searchString, position) {
@@ -92,6 +93,11 @@ mp.add_hook("on_load", 9, function () {
 
     reset_http_header("referer", result.extra.referer);
     reset_http_header("user-agent", result.extra.ua);
+
+    if (NO_INITIAL_AUDIO_SYNC) {
+        mp.set_property_native("initial-audio-sync", false);
+        mp.set_property_native("no-initial-audio-sync", true);
+    }
     mp.set_property_native("media-title", result.title + " [" + stream.quality + "]");
 
     var videoFile = stream.src[0];
